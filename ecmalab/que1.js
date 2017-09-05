@@ -4,7 +4,7 @@
 'use strict';
 
 const items = Array.from(document.querySelectorAll('[data-time]'));
-//console.log(items);
+console.log(items);
 
 const items_with_ecma = items.filter( (v) => v.innerText.includes("ECMA6") );
 for(let k in items_with_ecma){
