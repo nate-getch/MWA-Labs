@@ -11,11 +11,14 @@ for(let k in items_with_ecma){
     console.log(items_with_ecma[k]);
 }
 
-const items_time = items.map( (v) => v.dataset.time );
+//const items_time = items.map( (v) => v.dataset.time );
+const items_time = items.map( (v) => v.attributes['data-time'].nodeValue );
+
 console.log(items_time);
 
 const items_sec = items.map( (v) => {
-                    let temp = v.dataset.time.split(":");
+                    //let temp = v.dataset.time.split(":");
+					let temp = v.attributes['data-time'].nodeValue.split(":");
                     return (parseInt(temp[0]*60)) + parseInt(temp[1]);
                     }
                 );
