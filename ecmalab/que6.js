@@ -1,19 +1,12 @@
 'use strict';
-let str = {
-	val : "this house is nice !",
-	filter : function(){
-		let strArr = this.val.split(/ /);
-		//console.log(strArr);
-		strArr.forEach( (val,ind) => {
-								if(arguments[0].indexOf(val) > -1)
-									strArr[ind] = "***";
-									//console.log(ind) 
-								}
-					);
 
-		//console.log(strArr);
-		return strArr.join(" ");
+String.prototype.filter = function(){
+    let strArr = this.toString();
+    let bannedWords = arguments[0];
+    for(let k in bannedWords){
+        strArr = strArr.replace(bannedWords[k],'***');
 	}
+    return strArr;
 }
 
-console.log(str.filter(['house','nice']));
+console.log("this house is nice!".filter(['house','nice']));
