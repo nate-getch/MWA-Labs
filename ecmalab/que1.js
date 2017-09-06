@@ -7,6 +7,8 @@ const items = Array.from(document.querySelectorAll('[data-time]'));
 console.log(items);
 
 const items_with_ecma = items.filter( (v) => v.innerText.includes("ECMA6") );
+//console.log(items_with_ecma);
+
 for(let k in items_with_ecma){
     console.log(items_with_ecma[k]);
 }
