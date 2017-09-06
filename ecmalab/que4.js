@@ -1,14 +1,7 @@
-/*
-Calculation formula reference 
-http://extoxnet.orst.edu/faqs/dietcancer/web2/twohowto.html
-https://www.nhlbi.nih.gov/health/educational/lose_wt/BMI/bmi-m.htm
-*/
-
 'use strict';
 
 class BMICalculator{
-	constructor(unit, height, weight){
-		this.unit = unit;
+	constructor( height, weight){
 		this.height = height;
 		this.weight = weight;
 	}
@@ -20,22 +13,32 @@ class BMICalculator{
 			return true;
 		}
 	}
-	// calculate using cm and lbs
-	calcByStandard(){
-		//step 1- Multiply the weight in pounds by 0.45 (the metric conversion factor)
-		this.weight = this.weight * 0.45;
-		//step 2- Multiply the height in inches by 0.025 (the metric conversion factor)
-		this.height = this.height * 0.025;
-		// step 3 Square the answer from step 2
-		this.height = this.height * this.height;
-		// step 4 - Divide the answer from step 1 by the answer from step 3
-		let ans = this.weight / this.height;
-		return Math.round(ans * 100) / 100;
-	}
 	
-	calcByMetric(){
-		
-	}
+	// calculate using meter and kg
+	calculateByMetric() {
+		this.height = this.height/100; // convert cm to meter
+        const result = (this.weight) / Math.pow(this.height, 2);
+        return Math.round(result* 100) / 100;
+    }
+	
+	// calculate using feet and ibs
+    calculateByEnglish() {
+        const result = ((this.weight) / Math.pow((this.height * 12), 2)) * 703.0704;
+        return Math.round(result* 100) / 100;
+    }
+    getSatus(value) {
+        if (value < 18.5) {
+            return "Under weight";
+        }
+        else if (value >= 18.5 && value < 24.9) {
+            return "Normal / Healthy";
+        }
+        else if (value = 25 && value < 29.9) {
+            return "Over weight";
+        } else {
+            return "Obese";
+        }
+    }
 }
 
 const calc = function  (){
@@ -50,15 +53,21 @@ const calc = function  (){
         }
     }
 	
-	//console.log(height);
-	//console.log(weight);
-	let calcObj = new BMICalculator(unit,height,weight);
+	let calcObj = new BMICalculator(height,weight);
 	if(calcObj.validate()){
-		output.innerHTML = calcObj.calcByStandard();
+		let res;
+		if(unit == "metric"){
+			res = calcObj.calculateByMetric();
+		}
+		else{
+			res = calcObj.calculateByEnglish();
+		}
+		
+		output.innerHTML = `Your BMI: ${res} & Status: ${calcObj.getSatus(res)} `;
 		output.style.color = '#000';
 	}
 	else{
-		output.innerHTML = "Error: Please fill the Form properly";
+		output.innerHTML = `Error: Please insert valid Number for Weight and Height`;
 		output.style.color = 'red';
 	}
 };
