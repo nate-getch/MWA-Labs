@@ -12,4 +12,5 @@ class Clock extends emitter{
 }
 
 var c = new Clock();
-setInterval( () => { c.tick() }, 1000);
+c.on('tick', c.tick );
+setInterval( () => { c.emit('tick')  }, 1000);

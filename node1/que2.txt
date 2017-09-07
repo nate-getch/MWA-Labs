@@ -1,0 +1,20 @@
+1. Why do we want sometimes to use setImmidate instead of setTimeout?
+When we want to schedule the immediate execution of callback after I/O events callbacks and before setTimeout and setInterval. Timers are based on a time in the future, even if it's 0, while check immediate is always on the next turn of the loop. 
+
+setImmediate callbacks are called after I/O Queue callbacks are finished or timed out. 
+
+2. process.nextTick vs setImmidate?
+process.nextTick is not part of the event loop. It is executed with priority having been placed in nextTick queue.
+setImmediate callbacks are placed in Check phase of the event loop, and executed after the next turn of the loop.
+
+3. 10 global modules in Node env.
+- global
+- require
+- http, https
+- setInterval, clearInterval
+- setImmidate
+- setTimeOut, clearTimeout
+- module
+- process
+- v8
+- stream
