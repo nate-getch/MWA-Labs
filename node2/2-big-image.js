@@ -1,12 +1,13 @@
 const http = require('http');
 const fs = require('fs');
 
-// generated test text file
+// generated big test text file
 /*
 const file = fs.createWriteStream(__dirname+'/test.text');
 for(let i=0; i<1e6; i++)
     file.write("Abebe beso belto meta Abebe beso belto meta Abebe beso belto meta Abebe beso belto meta Abebe beso belto meta");
-file.end();*/
+file.end();
+*/
 
 const fname = __dirname+'/test.text';
 http.createServer(function(req,res){
