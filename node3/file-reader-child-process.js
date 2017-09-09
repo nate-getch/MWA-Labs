@@ -1,8 +1,7 @@
 const fs = require('fs');
-const path = require('path');
 
 process.on('message', (fileName) => {
-    fs.readFile(fileName, function (err, data) {
+    fs.readFile(fileName, 'UTF-8',function (err, data) {
         if (err) throw err;
         //console.log(data.toString());
         process.send(data.toString());

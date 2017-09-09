@@ -17,7 +17,7 @@ console.log("Checking your System...");
 
 Rx.Observable.fromPromise(checkSystem())
     .subscribe(
-        e => console.log(e), 
+        d => console.log(d), 
         err => console.error(err),
         () => console.log('done')
     );

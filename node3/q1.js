@@ -6,11 +6,12 @@ const { fork } = require('child_process');
 
 function onRequest (req,res) {
     var fileName = urlMod.parse(req.url, true).query.url; // ?url=temp/test1.txt
+    //console.log(fileName);
     if(fileName && fs.existsSync(fileName)){ 
         // using child process to read the file
-        const compute = fork('file-reader-child-process.js');
-        compute.send(fileName);
-        compute.on('message', r => {
+        const readFile = fork('file-reader-child-process.js');
+        readFile.send(fileName);
+        readFile.on('message', r => {
           res.end(r);
         })
 
