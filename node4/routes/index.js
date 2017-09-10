@@ -3,7 +3,12 @@ var router = express.Router();
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Express' });
+  let usersLink = {
+    'Promise': '',
+    'Observable': 'rx',
+    'Async':'async'
+  };
+  res.render('index', { title: 'Express', usersLink });
 });
 
 module.exports = router;
