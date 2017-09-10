@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Users</title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  </head>
+  <body>
+      <div class="container">
+          <h2>Users</h2>    
+          <p>Using  <%= method %></p>      
+          <table class="table">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Username</th>
+                <th>Email</th>
+                <th>City</th>
+                <th>Latitude</th>
+                <th>Longtiude</th>
+                <th>Website</th>
+              </tr>
+            </thead>
+            <tbody>
+               <% for(let i in userdata){  %>
+              <tr>
+                <td><%= userdata[i].id %></td>
+                <td><%= userdata[i].name %></td>
+                <td><%= userdata[i].username %></td>
+                <td><%= userdata[i].email %></td>
+                <td><%= userdata[i].address.city %></td>
+                <td><%= userdata[i].address.geo.lat %></td>
+                <td><%= userdata[i].address.geo.lng %></td>
+                <td><%= userdata[i].website %></td>
+              </tr>
+              <%  } %>
+            </tbody>
+          </table>
+        </div>
+  </body>
+</html>
