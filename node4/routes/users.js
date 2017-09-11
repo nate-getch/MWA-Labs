@@ -5,17 +5,6 @@ var router = express.Router();
 
 const apiAddr = 'http://jsonplaceholder.typicode.com/users/';
 
-const fetchUserData = function () {
-  let d = fetch(apiAddr)
-    .then(function (res) {
-      return res.json();
-    })
-    .catch(function (err) {
-      console.log(err);
-    });
-  return d;
-}
-
 const fetchUserDataAsync = async function () {
   let d;
   try {
@@ -30,13 +19,8 @@ const fetchUserDataAsync = async function () {
 // using async and await
 router.get('/async', function (req, res) {
   fetchUserDataAsync()
-    .then(d => {
-      return d.json()
-    })
-    .then(d => res.render('users', {
-      userdata: d,
-      method: 'Async & Await'
-    }))
+    .then(d => { return d.json() })
+    .then(d => res.render('users', { userdata: d,  method: 'Async & Await'  }))
     .catch(function (err) {
       console.log(err);
     });
@@ -44,14 +28,10 @@ router.get('/async', function (req, res) {
 
 // using observable
 router.get('/rx', function (req, res, next) {
-  Rx.Observable.fromPromise(
-      fetchUserData()
-    )
+  Rx.Observable.fromPromise( fetch(apiAddr)  )
+    .flatMap( d=> d.json())
     .subscribe(
-      d => res.render('users', {
-        userdata: d,
-        method: 'Observable'
-      }),
+      d => res.render('users', {userdata: d, method: 'Observable' }),
       err => console.error(err),
       () => console.log('done')
     )
@@ -61,13 +41,8 @@ router.get('/rx', function (req, res, next) {
 /* GET users listing. */
 router.get('/', function (req, res, next) {
   fetch(apiAddr)
-    .then(userdata => {
-      return userdata.json()
-    })
-    .then(userdata => res.render('users', {
-      userdata: userdata,
-      method: 'Promise'
-    }))
+    .then(userdata => { return userdata.json() })
+    .then(userdata => res.render('users', { userdata: userdata, method: 'Promise'}))
     .catch(err => console.log(err));
 });
 
