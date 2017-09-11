@@ -1,7 +1,10 @@
 var express = require('express');
 var bodyParser = require('body-parser');
 var cookieParser = require('cookie-parser')
-var csrf = require('csurf'); // API refer https://github.com/expressjs/csurf
+var csrf = require('csurf');
+var fs = require('fs');
+var appRootDir = require('app-root-dir').get();
+var path = require('path');
 
 // setup route middlewares 
 var csrfProtection = csrf({ cookie: true })
@@ -34,8 +37,12 @@ router.post('/', csrfProtection, urlencodedParser,
   },
   // save to text file and show Thanks page
   function(req, res, next) {
-    res.redirect('/newsletter/thankyou');
-
+    let t = req.body.email + '\r\n';
+    fs.appendFile(path.join(appRootDir,'/temp/subscribers.txt' ), t, function (err) {
+      if (err) throw err;
+      console.log('Saved!');
+      res.redirect('/newsletter/thankyou');
+    });
   }
 );
 
