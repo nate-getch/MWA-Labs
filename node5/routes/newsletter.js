@@ -1,6 +1,5 @@
 var express = require('express');
 var bodyParser = require('body-parser');
-var cookieParser = require('cookie-parser')
 var csrf = require('csurf');
 var fs = require('fs');
 var appRootDir = require('app-root-dir').get();
@@ -27,16 +26,13 @@ router.post('/', csrfProtection, urlencodedParser,
     }
     else{
       req.session.email = req.body.email;
-      console.log(req.body.email);
-      /*if(req.session.csrfToken == req.body._csrf ){
-        console.log("Walla");
-      }*/
+      //console.log(req.body.email);
       return next();
     }
   
   },
   // save to text file and show Thanks page
-  function(req, res, next) {
+  function(req, res) {
     let t = req.body.email + '\r\n';
     fs.appendFile(path.join(appRootDir,'/temp/subscribers.txt' ), t, function (err) {
       if (err) throw err;
@@ -47,14 +43,14 @@ router.post('/', csrfProtection, urlencodedParser,
 );
 
 router.get('/thankyou', function(req, res, next) {
-  // this page should not be accessed directly
+  // this page should not be accessed directly, check session first
   if(req.session.email){
     let email = req.session.email;
     //destroy session
     req.session.email = null;
     req.session.csrfToken = null;
     res.render('thanks', {title: 'Thank You', email });
-  }
+  } 
   else{
     res.redirect('/newsletter');
   }
