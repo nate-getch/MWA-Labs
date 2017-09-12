@@ -1,7 +1,2 @@
 ads@g.com
-a@hotmail.com
-asdf@gmail.com
-n@n.com
-asd@gmail.com
-sd@gmail.com
-ads@g.com
+a@hotmail.comn@gmail.com

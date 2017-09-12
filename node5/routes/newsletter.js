@@ -6,8 +6,8 @@ var appRootDir = require('app-root-dir').get();
 var path = require('path');
 
 // setup route middlewares 
-var csrfProtection = csrf({ cookie: true })
-var urlencodedParser = bodyParser.urlencoded({ extended: false })
+var csrfProtection = csrf({ cookie: true });
+var urlencodedParser = bodyParser.urlencoded({ extended: false });
 
 var router = express.Router();
 
