@@ -1,0 +1,22 @@
+name: MUM
+category: Education
+long: -91.9668346
+lat: 41.0179108
+
+Maharishi School
+Education
+-91.9657242
+41.0169253
+
+MUM Recreation Center
+Recreation
+ -91.9682385
+  41.017189
+
+  Iowa State Bank & Trust
+  Bank
+  41.0065408,-91.967743
+  
+  Dollar Tree
+  Store
+  41.0077623,-91.9693139

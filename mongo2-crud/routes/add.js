@@ -48,7 +48,7 @@ router.post('/', csrfProtection, urlencodedParser,
     
     MongoClient.connect(url, function(err, db) {
       if (err) throw err;
-      var myobj = { name: req.body.name, category: req.body.category, location: [req.body.long, req.body.lat ] };
+      var myobj = { name: req.body.name, category: req.body.category, location: [parseFloat(req.body.long), parseFloat(req.body.lat) ] };
       db.collection("location_points").insertOne(myobj, function(err, result) {
         if (err) throw err;
         //console.log("1 document inserted");
@@ -67,12 +67,3 @@ router.get('/', csrfProtection, function(req, res, next) {
 });
 
 module.exports = router;
-
-/*
-sample data
-name: MUM
-category: Education
-long: -91.9668346
-lat: 41.0179108
-
-*/

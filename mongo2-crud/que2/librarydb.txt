@@ -1,0 +1,20 @@
+// books collection
+{
+	_id: ObjectId(),
+	ISBN: '9780596554873',
+	author : 'Douglas Crockford',
+	tags : ['programming', 'javascript'],
+	checkout_record: [
+				{studentId:'stud1', borrowDate:new Date("<YYYY-mm-dd>"), returnDate:new Date("<YYYY-mm-dd>"), returnFlag:0},
+				{studentId:'stud2', borrowDate:new Date("<YYYY-mm-dd>"), returnDate:new Date("<YYYY-mm-dd>"), returnFlag:1},
+	],
+	original_qty: 5,
+	current_qty: 4
+}
+
+Suggestion to tune performance
+
+-> For the librarian to search books using Tags or author or both
+Index 1:- tags
+Index 2:- author
+Index 3:- tags, author

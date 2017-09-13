@@ -1,0 +1,4 @@
+{"_id":{"$oid":"59b9a27b8e07b008f8987a26"},"name":"MUM","category":"Education","location":[-91.9668346,41.0179108]}
+{"_id":{"$oid":"59b9a2a48e07b008f8987a27"},"name":"MUM Recreation Center","category":"Recreation","location":[-91.9682385,41.017189]}
+{"_id":{"$oid":"59b9a2ba8e07b008f8987a28"},"name":"Iowa State Bank \u0026 Trust","category":"Bank","location":[41.0065408,-91.967743]}
+{"_id":{"$oid":"59b9a2cc8e07b008f8987a29"},"name":"Dollar Tree","category":"Store","location":[41.0077623,-91.9693139]}
