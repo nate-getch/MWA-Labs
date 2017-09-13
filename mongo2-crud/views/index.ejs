@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+    <h1><%= title %></h1>
+    <a href="/add">Add New</a> | <a href="/search">Search</a>
+    <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Category</th>
+            <th>Latitude</th>
+            <th>Longtiude</th>
+            <th></th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+           <% for(let i in result){  %>
+          <tr>
+            <td><%= result[i].name %></td>
+            <td><%= result[i].category %></td>
+            <td><%= result[i].location[1] %></td>
+            <td><%= result[i].location[0] %></td>
+            <td><a href='/manage/edit?id=<%= result[i]._id %>'>Edit</a></td>
+            <td><a href='/manage/del?id=<%= result[i]._id %>'>Delete</a></td>
+          </tr>
+          <%  } %>
+        </tbody>
+      </table>
+  </body>
+</html>
