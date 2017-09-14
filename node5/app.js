@@ -7,6 +7,7 @@ var bodyParser = require('body-parser');
 //var randomstring = require("randomstring");
 var cookieSession = require('cookie-session');
 var validator = require('express-validator');
+var csrf = require('csurf');
 
 var index = require('./routes/index');
 var newsletter = require('./routes/newsletter');
@@ -34,6 +35,7 @@ app.use(cookieSession({
                     secure: false,
                     overwrite: false,
               }));
+app.use(csrf({ cookie: true }));
 
 app.use('/', index);
 app.use('/newsletter', newsletter);

@@ -1,19 +1,13 @@
 var express = require('express');
-var bodyParser = require('body-parser');
-var csrf = require('csurf');
 var fs = require('fs');
 var appRootDir = require('app-root-dir').get();
 var path = require('path');
-
-// setup route middlewares 
-var csrfProtection = csrf({ cookie: true });
-var urlencodedParser = bodyParser.urlencoded({ extended: false });
 
 var router = express.Router();
 
 let error = null;
 
-router.post('/', csrfProtection, urlencodedParser, 
+router.post('/', 
   // validate form
   function(req, res, next) {
     req.checkBody('email', 'must be an email').isEmail();
@@ -58,7 +52,7 @@ router.get('/thankyou', function(req, res, next) {
 });
 
 /* GET subscribe form */
-router.get('/', csrfProtection, function(req, res, next) {
+router.get('/', function(req, res, next) {
     req.session.csrfToken = req.csrfToken();
     res.render('newsletter', {title: 'Subscribe', error:null, csrfToken: req.session.csrfToken });
 });
