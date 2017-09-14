@@ -1,0 +1,20 @@
+1. db.aggr.aggregate([ 
+	{ $match:{'state':"IA"}}, 
+	{$group: {_id: {'zip':'$_id'} }} 
+	])
+
+2. db.aggr.aggregate([ 
+	{$match: { pop: { '$lt':1000}  } } , 
+	{$group: { _id: {'zip':'$_id', 'pop':'$pop'} } } 
+	])
+	
+3. db.aggr.aggregate([ 
+	{ $group: { _id: {'city':'$city', 'state':'$state'}, count:{$sum:1} } }, 
+	{$match:{ count:{$gt:1} } }, 
+	{$sort:{state:1, city:1}} 
+	])
+	
+4. db.aggr.aggregate([ 
+	{$sort: {pop:1} }, 
+	{$group: { _id: {'state':'$state'}, 'city':{$first:'city'} ,'pop':{$first: '$pop'} } } 
+	])

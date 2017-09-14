@@ -41,7 +41,7 @@ router.post('/edit', csrfProtection, urlencodedParser,
     MongoClient.connect(url, function(err, db) {
       if (err) throw err;
       var myq = {_id: new ObjectId(req.query.id)};
-      var newvalues = { name: req.body.name, category: req.body.category, location: [req.body.long, req.body.lat ] };
+      var newvalues = { '$set': { name: req.body.name, category: req.body.category, location: [parseFloat(req.body.long), parseFloat(req.body.lat) ] } };
       db.collection("location_points").updateOne(myq, newvalues, function(err, result) {
         if (err) throw err;
         //console.log("1 document updated");

@@ -14,8 +14,8 @@ router.get('/', function(req, res, next) {
     db.collection("location_points").find({}).toArray(function(err, result) {
       if (err) throw err;
       //console.log(result);
-      res.render('index', { title: pg_title, result: result })
       db.close();
+      res.render('index', { title: pg_title, result: result })
     });
 
   });
