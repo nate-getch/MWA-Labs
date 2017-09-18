@@ -5,7 +5,7 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 //var randomstring = require("randomstring");
-var cookieSession = require('cookie-session');
+var session = require('express-session');
 var validator = require('express-validator');
 var csrf = require('csurf');
 
@@ -27,14 +27,9 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(validator());
-app.use(cookieSession({
-                    name: 'session',
-                    secret: "nati",//randomstring.generate()
-                    httpOnly: true,
-                    maxAge: 30 * 60 * 1000,
-                    secure: false,
-                    overwrite: false,
-              }));
+app.use(session({
+    secret: "nati" //randomstring.generate()
+}));
 app.use(csrf({ cookie: true }));
 
 app.use('/', index);

@@ -11,6 +11,7 @@ router.post('/',
   // validate form
   function(req, res, next) {
     req.checkBody('email', 'must be an email').isEmail();
+    req.checkBody('_csrf', 'csrf not valid').notEmpty();
     const err = req.validationErrors(true );    
     //console.log(err);
 
@@ -54,6 +55,7 @@ router.get('/thankyou', function(req, res, next) {
 /* GET subscribe form */
 router.get('/', function(req, res, next) {
     req.session.csrfToken = req.csrfToken();
+
     res.render('newsletter', {title: 'Subscribe', error:null, csrfToken: req.session.csrfToken });
 });
 

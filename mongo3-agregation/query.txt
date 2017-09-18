@@ -16,5 +16,5 @@
 	
 4. db.aggr.aggregate([ 
 	{$sort: {pop:1} }, 
-	{$group: { _id: {'state':'$state'}, 'city':{$first:'city'} ,'pop':{$first: '$pop'} } } 
+	{$group: { _id: {'state':'$state'}, 'city':{$first:'$city'} ,'pop':{$first: '$pop'} } } 
 	])
