@@ -1,6 +1,6 @@
 class Person {
-    private _firstName: String;
-    constructor() {
+    
+    constructor(private _firstName: String) {
 
     }
     get firstName(): String {
