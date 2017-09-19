@@ -7,10 +7,20 @@ import { Component, ViewEncapsulation } from '@angular/core';
   encapsulation: ViewEncapsulation.Emulated
 })
 export class AppComponent {
-  title = 'app';
-  public counterValParent:number = 0;
+  title = 'Counter App';
+  public counterValParent: number = 0;
 
-  updateCounterFromChild(data){
+  updateCounterFromChild(data) {
     this.counterValParent = data;
+  }
+
+  setCounter(val) {
+    if(!isNaN(val))
+      this.counterValParent = val;
+  }
+
+  onEnter(val: number) { 
+    if(!isNaN(val))
+    this.counterValParent = val; 
   }
 }

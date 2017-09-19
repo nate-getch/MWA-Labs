@@ -2,10 +2,17 @@
   <h1>
     Welcome to {{title}}!
   </h1>
+  <hr/>
   <div class="col-md-4">Parent component </div>
-  <div class="col-md-4"><input [(ngModel)]="counterValParent" #ctrInp></div>
+  <div class="col-md-4">
+    <input  class="col-md-8" [value]="counterValParent" #ctrInp (keyup.enter)="onEnter(ctrInp.value)">
+    <button class="col-md-4" (click)="setCounter(ctrInp.value)">Set</button>
+  </div>
   <div class="clearfix"></div>
 
   <app-counter [counterValue]="counterValParent" (counterChange)="updateCounterFromChild($event)">
   </app-counter>
+  <hr/>
+  <div class="col-md-8">Component Counter Value {{counterValParent}}</div>
+  <div class="clearfix"></div>
 </div>
