@@ -8,19 +8,15 @@ import { Component, ViewEncapsulation } from '@angular/core';
 })
 export class AppComponent {
   title = 'Counter App';
-  public counterValParent: number = 0;
+  public componentCounterValue: number = 0;
 
   updateCounterFromChild(data) {
-    this.counterValParent = data;
+    this.componentCounterValue = data;
   }
 
   setCounter(val) {
     if(!isNaN(val))
-      this.counterValParent = val;
+      this.componentCounterValue = val;
   }
 
-  onEnter(val: number) { 
-    if(!isNaN(val))
-    this.counterValParent = val; 
-  }
 }
