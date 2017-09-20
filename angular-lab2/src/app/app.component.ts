@@ -7,4 +7,10 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'app';
+  strings: String[] = ["nati","Getch", "beti"];
+  selectedColor = '';
+  getColor(){
+      if(this.selectedColor)
+        console.log(this.selectedColor);
+  }
 }
