@@ -1,9 +1,10 @@
-<div style="text-align:center">
+<div class="container">
   <h1>
     Welcome to {{title}}!
   </h1>
+  <a [routerLink]="['home']">Home</a>
+  <a [routerLink]="['students']">Students</a>
+  <hr/>
+  <router-outlet></router-outlet>
 </div>
-<a [routerLink]="['home']">Home</a>
-<a [routerLink]="['students']">Students</a>
 
-<router-outlet></router-outlet>

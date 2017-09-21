@@ -13,13 +13,11 @@ export class ProfileComponent implements OnInit, OnDestroy {
   studentID;
   student;
   constructor(private db: DbService, private route: ActivatedRoute, private router: Router) { 
-    this.subscription = route.params.subscribe(p => { this.studentID = p['id']; });
-
-    console.log(this.studentID);
-    //this.router.navigate(['home']);
+    
   }
 
   ngOnInit() {
+    this.subscription = this.route.params.subscribe(p => { this.studentID = p['id']; });
     this.student = this.db.getStudent(this.studentID);
     console.log(this.student);
   }
