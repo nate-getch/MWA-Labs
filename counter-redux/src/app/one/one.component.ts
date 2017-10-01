@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { NgRedux, select } from '@angular-redux/store';
 
-import { IAppState, rootReducer, INITIAL_STATE } from '../store/store';
+import { IAppState, INITIAL_STATE } from '../store/store';
+import { rootReducer } from '../store/reducer';
 import { actions } from '../store/action';
 
 @Component({
@@ -19,11 +20,11 @@ export class OneComponent implements OnInit {
   ngOnInit() {
   }
 
-  decrement(){
-      this.ngRedux.dispatch({ type: actions.DECREMENT, amount: this.amount})
+  decrement() {
+    this.ngRedux.dispatch({ type: actions.DECREMENT, amount: this.amount })
   }
-  reset(){
-    this.ngRedux.dispatch({ type: actions.RESET})
+  reset() {
+    this.ngRedux.dispatch({ type: actions.RESET })
   }
 
 }
