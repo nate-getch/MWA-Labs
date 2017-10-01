@@ -4,6 +4,10 @@ import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
+import { NgReduxModule, NgRedux } from '@angular-redux/store';
+import { IAppState } from './store/store';
+import { ActionService } from './store/action';
+import { reducer, initialState } from './store/reducer';
 
 @NgModule({
   declarations: [
@@ -12,9 +16,14 @@ import { AppComponent } from './app.component';
   imports: [
     BrowserModule,
     FormsModule,
-    HttpModule
+    HttpModule,
+    NgReduxModule
   ],
-  providers: [],
+  providers: [ActionService],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule { 
+  constructor(ngRedux: NgRedux<IAppState>) {
+    ngRedux.configureStore(reducer, initialState);
+  }
+}
